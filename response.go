@@ -24,18 +24,18 @@ func ErrorMessage(err ApiError, msg string, args ...interface{}) interface{} {
 		err.Msg = msg
 	}
 	if len(args) == 1 {
-		return errorWrapper{err, args[0]}
+		return errorWrapper{ApiError: err, Data: args[0]}
 	}
-	return errorWrapper{err, args}
+	return errorWrapper{ApiError: err, Data: args}
 }
 
 func Error(err ApiError, args ...interface{}) interface{} {
 	if len(args) == 1 {
-		return errorWrapper{err, args[0]}
+		return errorWrapper{ApiError: err, Data: args[0]}
 	}
-	return errorWrapper{err, args}
+	return errorWrapper{ApiError: err, Data: args}
 }
 
 func OK(args ...interface{}) interface{} {
-	return Error(ApiError{StatusOK, MsgOK}, args...)
+	return Error(ApiError{Code: StatusOK, Msg: MsgOK}, args...)
 }
