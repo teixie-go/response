@@ -36,6 +36,6 @@ func Error(err ApiError, args ...interface{}) interface{} {
 	return errorWrapper{err, args}
 }
 
-func Ok(args ...interface{}) interface{} {
+func OK(args ...interface{}) interface{} {
 	return Error(ApiError{StatusOK, MsgOK}, args...)
 }
