@@ -10,11 +10,11 @@ func (e *ApiError) Error() string {
 }
 
 type errorWrapper struct {
-	*ApiError
+	ApiError
 	Data interface{} `json:"data"`
 }
 
-func Render(err *ApiError, args ...interface{}) interface{} {
+func Render(err ApiError, args ...interface{}) interface{} {
 	if len(args) == 1 {
 		return errorWrapper{ApiError: err, Data: args[0]}
 	}
